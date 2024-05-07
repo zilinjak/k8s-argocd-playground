@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: root-sync-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  project: testing-project
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: {{ .Values.repoURL }}
+      revision: HEAD
+      directories:
+      - path: 'infra/*'
+      - path: 'apps/*'
+  template:
+    metadata:
+      name: '{{ "{{" }}.path.basename{{ "}}" }}'
+    spec:
+      project: "testing-project"
+      source:
+        repoURL: {{ .Values.repoURL }}
+        targetRevision: HEAD
+        path: '{{ "{{" }}.path.path{{ "}}" }}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true

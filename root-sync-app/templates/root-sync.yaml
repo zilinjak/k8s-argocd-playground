@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-sync-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/zilinjak/k8s-argocd-playground.git
+    path: root-sync-appset-apps, root-sync-appset-infra
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default

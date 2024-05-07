@@ -10,9 +10,14 @@ This repository is for testing and playing with K8S and Argocd. It is intended t
 
 ```bash
 # Install the chart
-helm instal argo-cd argo-cd --namespace=argo-cd --create-namespace
+helm install argo-cd argo-cd --namespace=argocd --create-namespace
 # When required to upgrade
-helm upgrade argo-cd argo-cd --namespace=argo-cd --create-namespace
+helm upgrade argo-cd argo-cd
+```
+
+## Install root sync app
+```bash
+helm install root-sync-app root-sync-app --create-namespace
 ```
 
 ### How was it prepared

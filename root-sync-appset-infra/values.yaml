@@ -1,0 +1,2 @@
+repoURL: https://github.com/zilinjak/k8s-playground-apps.git
+namespace: argocd
