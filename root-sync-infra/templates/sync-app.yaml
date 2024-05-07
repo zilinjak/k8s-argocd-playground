@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-sync-infra
+  namespace: argocd
+spec:
+  project: default
+  source:
+    directory:
+      include: '*.yaml'
+    path: infra
+    repoURL: https://github.com/zilinjak/k8s-playground-apps
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: infra
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true

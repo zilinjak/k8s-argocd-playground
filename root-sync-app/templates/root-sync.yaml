@@ -5,10 +5,18 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/zilinjak/k8s-argocd-playground.git
-    path: root-sync-appset-apps, root-sync-appset-infra
-    targetRevision: HEAD
+  sources:
+   - repoURL: https://github.com/zilinjak/k8s-argocd-playground.git
+     path: root-sync-apps
+     targetRevision: HEAD
+   - repoURL: https://github.com/zilinjak/k8s-argocd-playground.git
+     path: root-sync-infra
+     targetRevision: HEAD
+   - repoURL: https://github.com/zilinjak/k8s-argocd-playground.git
+     path: k8s-projects
+     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: argocd
+  syncPolicy:
+    automated: {}

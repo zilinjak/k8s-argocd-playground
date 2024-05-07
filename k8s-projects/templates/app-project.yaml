@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: testing-project
+  name: app-project
   namespace: argocd
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Test project playground
+  description: Test project playground, contains apps
   sourceRepos:
   - '*'
   destinations:
@@ -16,3 +16,13 @@ spec:
     name: in-cluster
   sourceNamespaces:
   - "*"
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - description: Admin privileges
+      groups:
+        - argocdtest_admin_group
+      name: admin
+      policies:
+        - 'p, proj:argocdtest:admin, applications, *, argocdtest/*, allow'
