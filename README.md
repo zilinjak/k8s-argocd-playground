@@ -23,3 +23,7 @@ helm install root-sync-app root-sync-app --create-namespace
 ### How was it prepared
  - Add helm repository - `helm repo add argo https://argoproj.github.io/argo-helm`
  - Extract helm for argo - `helm pull argo/argo-cd --untar`
+
+### TODOS
+ - [ ] https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
+   - This is required because projects cant be used when the admin users has permissions only over argocd namespace and default project
