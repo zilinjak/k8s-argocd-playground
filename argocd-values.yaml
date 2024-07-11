@@ -1,4 +1,5 @@
 server:
   service:
-    type: NodePort
-    nodePortHttp: 30080
+    type: LoadBalancer
+    servicePortHttp: 4000
+    servicePortHttps: 5000
