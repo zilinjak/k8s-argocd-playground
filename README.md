@@ -48,7 +48,16 @@ kubectl port-forward service/argo-argocd-server -n argocd 8080:443
 helm install root-sync-app root-sync-app --create-namespace
 ```
 
+### Accessing the apps
+
+Start the cluster
+ - Minikube: `minikube start`
+ - Start tunneling: `minikube tunnel`
+
+
 # Links
-  - [ArgoCD](localhost:30080/applications)
-  - [Prometheus.Alertmanager](http://localhost:32395)
-  - [Prometheus](http://localhost:31015)
+  - [ArgoCD](localhost:4000/applications)
+  - [Prometheus.Alertmanager](http://localhost:4002)
+  - [Prometheus](http://localhost:4001)
+  - [Example envoy app](http://localhost:4500) -> 
+    - curl --verbose --header "Host: www.example.com" http://localhost:4500/get
