@@ -14,12 +14,10 @@ This repository is for testing and playing with K8S and Argocd. It is intended t
 helm search repo argo-cd/argo-cd --versions
 ```
 
-### Install the chart
+### Install ArgoCD
 ```bash
 # Install the chart
 helm install argo argo/argo-cd --namespace=argocd --create-namespace --version 7.3.3 --values argocd-values.yaml
-# When required to upgrade
-helm upgrade argo-cd argo-cd
 ```
 
 ### Configuring the argo-cd chart
@@ -49,10 +47,6 @@ kubectl port-forward service/argo-argocd-server -n argocd 8080:443
 ```bash
 helm install root-sync-app root-sync-app --create-namespace
 ```
-
-### How was it prepared
- - Add helm repository - `helm repo add argo https://argoproj.github.io/argo-helm`
- - Extract helm for argo - `helm pull argo/argo-cd --untar`
 
 # Links
   - [ArgoCD](localhost:30080/applications)
